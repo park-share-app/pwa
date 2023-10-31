@@ -27,6 +27,11 @@ jobs:
       matrix:
         node-version: [16.x]
 
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -57,7 +62,7 @@ jobs:
           path: './dist'
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v2
 
       # - name: Deploy
       #   run: |
